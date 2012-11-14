@@ -73,7 +73,7 @@ var addCover = function(coverUrl,coverFlowList){
     $(".coverFlowRow").each(function(index, value){
             if (rowAndColumn.row === index)
             {
-                $(value).append('<li tabindex="0"><a><img src="box art\\408939.jpg" /></a></li>');
+                $(value).append('<li tabindex="0"><img src="box art\\408939.jpg" /></li>');
             }
         }
     )

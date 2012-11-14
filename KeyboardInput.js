@@ -3,7 +3,8 @@ var direction = {
     leftArrow: 37,
     upArrow: 38,
     rightArrow: 39,
-    downArrow: 40
+    downArrow: 40,
+    enterKey: 13
 }
 
 var navigationItemsKeyDown = function(key){
@@ -27,7 +28,7 @@ var switchFocus = function(){
     coverFlowList.hasFocus = !coverFlowList.hasFocus;
 }
 
-var contentAreaKeyDown = function(key){
+var contentAreaKeyDown = function(key, target){
     switch (key)
     {
         case direction.leftArrow:
@@ -47,6 +48,10 @@ var contentAreaKeyDown = function(key){
         case direction.rightArrow:
             coverFlowList.moveSelectionRight();
             break;
+        case direction.enterKey:
+            alert($(target).children('img').first().attr('src'));
+            break;
+
     }
 };
 $('#navigationArea').keydown(function(event){
@@ -56,11 +61,14 @@ $('#navigationArea').keydown(function(event){
 });
 $('#contentArea').keydown(function(event){
     if (coverFlowList.hasFocus){
-        contentAreaKeyDown(event.keyCode);
+        contentAreaKeyDown(event.keyCode, event.target);
     }
 });
 $(window).keydown(function(event){
-    event.preventDefault();
+    //if not ctrl+shift+c (chrome debugger) disable other keys
+    if (!(event.ctrlKey && event.shiftKey && event.keyCode === 67 )){
+        event.preventDefault();
+    }
 });
 $(window).focusin(function(event){
     focusElement = event.target;
