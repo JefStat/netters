@@ -1,0 +1,29 @@
+#navigationList {
+    margin-top: 20%;
+    list-style-type: none;
+}
+#navigationList li {
+    background: #373737;
+    line-height: 4em;
+    margin: 10px 60px 10px 0px;
+}
+#navigationList li a {
+    font-size: 1.5em;
+    font-family: sans-serif;
+    color: #d5d5d5;
+    margin: 0px 0px 0px 5px;
+}
+#navigationList li:focus {
+    background: #d5d5d5;
+}
+#navigationList li:focus > a {
+     color: #373737;
+ }
+#navigationTitle {
+    font-size: 1.5em;
+    font-family: sans-serif;
+    color: #d5d5d5;
+}
+:focus {
+    outline: none;
+}
