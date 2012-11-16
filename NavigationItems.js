@@ -7,6 +7,23 @@ var navigationList ={
                      ],
     selectedIndex: 0,
     hasFocus: true,
+    setHasFocus: function(value) {
+        if (value !== this.hasFocus){
+            this.hasFocus = value;
+            if (this.hasFocus){
+                this.removeTransparencyCSSClass();
+            }else {
+                this.addTransparencyCSSClass();
+            }
+        }
+    },
+    addTransparencyCSSClass: function() {
+        $("#navigationList li :nth(" + this.selectedIndex + ")")
+            .addClass('semiTransparent');
+    },
+    removeTransparencyCSSClass: function() {
+        $("#navigationList li.semiTransparent").removeClass('semiTransparent');
+    },
     moveNextSelection: function(){
         if (this.selectedIndex !== this.navigationItems.length-1){
             this.selectedIndex++;
@@ -22,7 +39,7 @@ var navigationList ={
         return this.selectedIndex;
     },
     focusSelectedIndex: function(){
-        $('li.navigationItem :nth(' + this.selectedIndex + ')').focus();
+        $('#navigationList li :nth(' + this.selectedIndex + ')').focus();
     }
 }
 
@@ -33,11 +50,11 @@ var onFocusIn = function(eventObject){
 };
 
 var createNavigationListItem = function(index, value){
-    $("#navigationList").append('<li tabindex="0" class="navigationItem"><a>' + value.name + '</a></li>');
+    $("#navigationList").append('<li tabindex="0"><a>' + value.name + '</a></li>');
 };
 
 var init = function(){
     $.each(navigationList.navigationItems,createNavigationListItem);
-    $('li.navigationItem').focusin(onFocusIn);
-    $('li.navigationItem').first().focus();
+    $('#navigationList li').focusin(onFocusIn);
+    $('#navigationList li').first().focus();
 }();

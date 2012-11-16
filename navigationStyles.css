@@ -24,6 +24,16 @@
     font-family: sans-serif;
     color: #d5d5d5;
 }
-:focus {
-    outline: none;
+#navigationList li:focus {
+    background: #d5d5d5;
+}
+#navigationList li:focus > a {
+    color: #373737;
+}
+#navigationList li.semiTransparent {
+    opacity: .80;
+    background: #d5d5d5;
+}
+#navigationList li.semiTransparent > a {
+    color: #373737;
 }

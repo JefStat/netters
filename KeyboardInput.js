@@ -24,7 +24,7 @@ var navigationItemsKeyDown = function(key){
 };
 
 var switchFocus = function(){
-    navigationList.hasFocus = !navigationList.hasFocus;
+    navigationList.setHasFocus(!navigationList.hasFocus);
     coverFlowList.hasFocus = !coverFlowList.hasFocus;
 }
 
