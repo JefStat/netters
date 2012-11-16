@@ -1,3 +1,4 @@
+var navigationList = function(){
 var navigationList ={
     navigationItems: [
                         {name: 'Suggestions For You'},
@@ -47,6 +48,7 @@ var onFocusIn = function(eventObject){
     var p = eventObject.target.firstChild.cloneNode(true);
     p.setAttribute('id','navigationTitle');
     $("#navigationTitle").replaceWith(p);
+    coverFlowList.getTitles();
 };
 
 var createNavigationListItem = function(index, value){
@@ -57,4 +59,12 @@ var init = function(){
     $.each(navigationList.navigationItems,createNavigationListItem);
     $('#navigationList li').focusin(onFocusIn);
     $('#navigationList li').first().focus();
+};
+
+    $(window).ready(function(){
+        init();
+
+    });
+
+    return navigationList;
 }();

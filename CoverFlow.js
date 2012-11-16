@@ -1,5 +1,6 @@
-var coverFlowList =
-    {
+var coverFlowList = function()
+{
+    var coverFlowList = {
         rows: 2,
         columns: 4,
         size: 0,
@@ -56,35 +57,33 @@ var coverFlowList =
         focusSelectedIndex: function(){
             $('#coverFlow ul :eq(' + this.selectedIndex.row  + ')').
                 children()[this.selectedIndex.column].focus();
+        },
+
+        getTitles: function(){
+            $('.coverFlowRow li').remove();
+            coverFlowList.size = 0;
+            dataSource.getCovers( 8, addCover );
         }
     };
-
-var createRow = function(rows){
-    var i;
-    for(i=0;i<rows;i++)
-    {
-        $("#coverFlow").append('<ul class="coverFlowRow"></ul>');
-    }
-};
-
-var addCover = function(coverUrl,coverFlowList){
-    coverFlowList.size++;
-    var rowAndColumn = coverFlowList.getRowAndColumnIndex();
-    $(".coverFlowRow").each(function(index, value){
-            if (rowAndColumn.row === index)
-            {
-                $(value).append('<li tabindex="0"><img src="box art\\408939.jpg" /></li>');
-            }
+     var createRow = function(rows){
+        var i;
+        for(i=0;i<rows;i++)
+        {
+            $("#coverFlow").append('<ul class="coverFlowRow"></ul>');
         }
-    )
-};
+     };
 
-createRow(coverFlowList.rows);
-addCover("",coverFlowList);
-addCover("",coverFlowList);
-addCover("",coverFlowList);
-addCover("",coverFlowList);
-addCover("",coverFlowList);
-addCover("",coverFlowList);
-addCover("",coverFlowList);
-addCover("",coverFlowList);
+    var addCover = function(coverUrl){
+        coverFlowList.size++;
+        var rowAndColumn = coverFlowList.getRowAndColumnIndex();
+        $(".coverFlowRow").each(function(index, value){
+                if (rowAndColumn.row === index)
+                {
+                    $(value).append('<li tabindex="0"><img src="' + coverUrl + '" /></li>');
+                }
+            }
+        )
+    };
+    createRow(coverFlowList.rows);
+    return coverFlowList;
+ }();

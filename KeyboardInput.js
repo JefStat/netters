@@ -1,3 +1,4 @@
+var KeyboardInput = function(){
 var focusElement;
 var direction = {
     leftArrow: 37,
@@ -5,7 +6,7 @@ var direction = {
     rightArrow: 39,
     downArrow: 40,
     enterKey: 13
-}
+};
 
 var navigationItemsKeyDown = function(key){
     switch (key)
@@ -17,8 +18,9 @@ var navigationItemsKeyDown = function(key){
             navigationList.moveNextSelection();
             break;
         case direction.rightArrow:
+        case direction.enterKey:
             switchFocus();
-            coverFlowList.selectFirst();
+            coverFlowList .selectFirst();
             break;
     }
 };
@@ -26,7 +28,7 @@ var navigationItemsKeyDown = function(key){
 var switchFocus = function(){
     navigationList.setHasFocus(!navigationList.hasFocus);
     coverFlowList.hasFocus = !coverFlowList.hasFocus;
-}
+};
 
 var contentAreaKeyDown = function(key, target){
     switch (key)
@@ -77,3 +79,4 @@ $(window).click(function(event){
     event.preventDefault();
     $(focusElement).focus();
 });
+}();
